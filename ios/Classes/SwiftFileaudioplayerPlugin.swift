@@ -38,15 +38,15 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
     private func start(filePath: String){
         let url = URL(string: filePath)
         let avopts:AVAudioSessionCategoryOptions  = [
-		    .MixWithOthers,
-		    .DuckOthers,
-		    .InterruptSpokenAudioAndMixWithOthers
+		    .mixWithOthers,
+		    .duckOthers,
+		    .interruptSpokenAudioAndMixWithOthers
 	    ]
         
         if (url != nil){
             do {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: avopts)
-                try AVAudioSession.sharedInstance().setActive(true, options: avopts)
+                try AVAudioSession.sharedInstance().setActive(true)
 
                 try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue)
 
