@@ -40,10 +40,10 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
         
         if (url != nil){
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: .duckOthers)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: AVAudioSessionCategoryOptions.interruptSpokenAudioAndMixWithOthers)
                 try AVAudioSession.sharedInstance().setActive(true)
 
-                try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue)
+                try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue, setVolume:1.0)
 
                 audioPlayer!.delegate = self
 
@@ -63,7 +63,7 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
         audioPlayer?.stop()
         
         do {
-            try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setActive(false, with: AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation)
             self.flutterResult!(true)
         } catch {
             print("AVAudioSession stop error: \(error)")
@@ -100,7 +100,7 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
     
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         do {
-            try AVAudioSession.sharedInstance().setActive(false)
+            try AVAudioSession.sharedInstance().setActive(false,with: AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation)
             self.flutterResult!(true)
         } catch {
             print("AVAudioSession audioPlayerDidFinishPlaying error: \(error)")
