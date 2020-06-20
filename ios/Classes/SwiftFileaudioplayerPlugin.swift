@@ -40,7 +40,7 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
         
         if (url != nil){
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.interruptSpokenAudioAndMixWithOthers)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: .interruptSpokenAudioAndMixWithOthers)
                 try AVAudioSession.sharedInstance().setActive(true)
 
                 try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue)
