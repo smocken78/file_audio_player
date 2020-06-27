@@ -50,6 +50,7 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
 
                 try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue)
 
+		audioPlayer!.setVolume(1.0)
                 audioPlayer!.delegate = self
 
                 audioPlayer!.play()
