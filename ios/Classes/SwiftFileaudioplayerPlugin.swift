@@ -50,7 +50,7 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
 
                 try audioPlayer = AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.wav.rawValue)
 
-		audioPlayer!.setVolume(1.0)
+		audioPlayer!.setVolume(1.0, fadeDuration:0)
                 audioPlayer!.delegate = self
 
                 audioPlayer!.play()
@@ -95,7 +95,6 @@ public class SwiftFileaudioplayerPlugin: NSObject, FlutterPlugin, AVAudioPlayerD
     private func resume(){
         
         do {
-	    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: avopts)
             try AVAudioSession.sharedInstance().setActive(true)
             self.flutterResult!(true)
         } catch {
