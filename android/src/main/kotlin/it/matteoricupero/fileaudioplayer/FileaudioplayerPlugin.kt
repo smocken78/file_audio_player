@@ -141,7 +141,12 @@ public class FileaudioplayerPlugin: FlutterPlugin, MethodCallHandler {
                 .setAudioAttributes(mPlaybackAttributes)
                 .setOnAudioFocusChangeListener { }
                 .build()
-        audioManager?.requestAudioFocus(audioFocusRequest)
+        
+        val _localAudioFocusRequest = audioFocusRequest;
+        
+        if (_localAudioFocusRequest != null) {
+          audioManager?.requestAudioFocus(_localAudioFocusRequest)
+        }
       } catch (e: Exception) {
         e.printStackTrace()
       }
@@ -151,7 +156,9 @@ public class FileaudioplayerPlugin: FlutterPlugin, MethodCallHandler {
   private fun abandonFocus() {
     try {
       if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        audioManager?.abandonAudioFocusRequest(audioFocusRequest)
+        if (audioFocusRequest != null) {
+          audioManager?.abandonAudioFocusRequest(audioFocusRequest)
+        }
       }
     } catch (e: Exception) {
       e.printStackTrace()
