@@ -156,8 +156,9 @@ public class FileaudioplayerPlugin: FlutterPlugin, MethodCallHandler {
   private fun abandonFocus() {
     try {
       if (VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        if (audioFocusRequest != null) {
-          audioManager?.abandonAudioFocusRequest(audioFocusRequest)
+        val _localAudioFocusRequest = audioFocusRequest;
+        if (_localAudioFocusRequest != null) {
+          audioManager?.abandonAudioFocusRequest(_localAudioFocusRequest)
         }
       }
     } catch (e: Exception) {
