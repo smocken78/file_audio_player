@@ -1,16 +1,16 @@
 name: fileaudioplayer
 description: Audio player for local files. This plugin have ducking support to reduce the main audio volume while playing background music
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/tapeo/file_audio_player
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0-0 <3.0.0'
   flutter: ">=1.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  path_provider: ^1.6.10
+  path_provider: ^2.0.1
 
 dev_dependencies:
   flutter_test:

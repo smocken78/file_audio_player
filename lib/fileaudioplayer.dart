@@ -19,10 +19,10 @@ class FileAudioPlayer {
 
   cleanUp() {
     _assetCache.keys.forEach((element) async {
-      _assetCache[element].delete();
+      _assetCache[element]!.delete();
     });
     _assetCache.clear();
-  }  
+  }
 
   Future<File> _fetchToMemory(String fileName) async {
     final file = File('${(await getTemporaryDirectory()).path}/$fileName');
@@ -37,7 +37,7 @@ class FileAudioPlayer {
 
   Future<void> playAsset(String asset) async {
     try {
-      await start(_assetCache[asset].path);
+      await start(_assetCache[asset]!.path);
     } on PlatformException catch (e) {
       print("Stream start error : $e");
     }
